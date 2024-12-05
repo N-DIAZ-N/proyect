@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>Registro de Usuario</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f1f8f8;
+        }
+
+        .form-container {
+            background: #feffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(243, 6, 6, 0.1);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .form-container img {
+            width: 100px;
+            height: auto;
+            margin-bottom: 15px;
+        }
+
+        .form-container h1 {
+            margin-bottom: 20px;
+            font-size: 1.5em;
+            color: #f8f7f8;
+        }
+
+        .form-container form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-container label {
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #000000;
+            text-align: left;
+        }
+
+        .form-container input {
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #f0a7d1;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+
+        .form-container button {
+            padding: 10px;
+            background-color: #c081a1;
+            color: rgb(243, 237, 239);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+
+        .form-container button:hover {
+            background-color: #f7c2dc;
+        }
+
+        .form-container a {
+            display: block;
+            margin-top: 10px;
+            text-decoration: none;
+            color: #ffffff;
+            font-size: 0.9em;
+        }
+
+        .form-container a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <img src="{{ url_for('static', filename='images/logo123.png.png') }}" alt="Logo">
+</head>
+<body>
+    <h1>Registro de Usuario</h1>
+    <form action="{{ url_for('registro') }}" method="post">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" required>
+
+        <label for="correo">Correo:</label>
+        <input type="email" id="correo" name="correo" required>
+
+        <label for="contraseña">Contraseña:</label>
+        <input type="password" id="contraseña" name="contraseña" required>
+
+        <button type="submit">Registrarse</button>
+    </form>
+    <a href="{{ url_for('login') }}">¿Ya tienes cuenta? Inicia sesión aquí</a>
+</body>
+</html>

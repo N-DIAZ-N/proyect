@@ -1,0 +1,235 @@
+/* Estilo para el fondo de la página */
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background: url('uploads/fondo.jpeg') no-repeat center center fixed;
+    background-size: cover; /* La imagen cubre toda la pantalla */
+    color: #e6d8d8;
+    margin: 0;
+    padding: 20px;
+}
+ /* Estilo para el encabezado y barra de búsqueda */
+ header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #3498db; /* Fondo azul sólido */
+    color: rgb(42, 24, 146);
+}
+
+/* Fondo de color para el contenedor de login, para mejorar la legibilidad */
+.login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh; /* Centra verticalmente */
+    background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco semi-transparente */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(238, 232, 232, 0.1); /* Sombra suave */
+}
+
+h1 {
+    text-align: center;
+    color: #0073e6;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: rgb(39, 36, 238); /* Color azul con transparencia */
+    color: rgb(250, 250, 250);
+    
+}
+
+/* Estilo del formulario de login */
+.login-form {
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+.login-form label {
+    display: block;
+    font-weight: bold;
+    color: #333;
+    margin-top: 10px;
+}
+
+.login-form input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+.login-button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 15px;
+    background-color: #0011ff;
+    color: #ebf4f5;
+    font-weight: bold;
+    font-size: 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.login-button:hover {
+    background-color: #3065d8;
+}
+
+.register-link {
+    display: block;
+    margin-top: 15px;
+    color: #eff4f5;
+    text-align: center;
+    font-size: 0.9rem;
+    text-decoration: none;
+}
+
+.register-link:hover {
+    text-decoration: underline;
+}
+
+
+.productos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Centra los productos */
+    gap: 20px; /* Espacio entre los productos */
+}
+
+.producto {
+    background-color: rgb(24, 194, 236); /* Fondo blanco para cada producto */
+    border: 1px solid #e0e0e0; /* Borde gris suave */
+    border-radius: 5px; /* Bordes redondeados */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    width: 200px; /* Ancho fijo para los productos */
+    text-align: center; /* Centra el texto dentro del producto */
+    padding: 10px;
+    transition: transform 0.2s; /* Animación suave */
+}
+
+.producto:hover {
+    transform: scale(1.05); /* Aumenta el tamaño al pasar el ratón */
+}
+
+.producto img {
+    width: 100%; /* Ajusta la imagen al contenedor */
+    height: auto; /* Mantiene la relación de aspecto */
+    max-height: 150px; /* Limita la altura máxima */
+    border-radius: 5px; /* Bordes redondeados en la imagen */
+}
+
+a {
+    display: inline-block; /* Hace que el enlace ocupe el ancho completo */
+    background-color: #0073e6; /* Color de fondo del botón */
+    color: white; /* Color del texto */
+    padding: 10px 15px; /* Espaciado interior */
+    text-decoration: none; /* Sin subrayado */
+    border-radius: 5px; /* Bordes redondeados */
+    margin-top: 10px; /* Espacio arriba */
+}
+
+a:hover {
+    background-color: #005bb5; /* Color más oscuro al pasar el ratón */
+}
+
+footer {
+    background-color: rgba(0, 0, 0, 0.7); /* Fondo oscuro del footer */
+    color: white;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+  }
+
+  /* Contenedor para el texto y el video */
+  .footer-container {
+    display: flex;
+    justify-content: space-between; /* Coloca los elementos a los extremos */
+    align-items: center;
+    max-width: 1200px; /* Limita el ancho */
+    margin: 0 auto; /* Centra el contenido */
+  }
+
+  /* Estilo para el texto en el footer */
+  .footer-text {
+    flex: 1;
+    font-size: 16px;
+  }
+
+  /* Estilo para el video en el footer */
+  .footer-video video {
+    width: 320px; /* Establece el tamaño del video */
+    height: 240px;
+    object-fit: cover; /* Asegura que el video mantenga el aspecto sin deformarse */
+  }
+
+  /* Responsividad para pantallas más pequeñas */
+  @media (max-width: 768px){ 
+    .footer-container {
+      flex-direction: column; /* Apila los elementos en columnas en pantallas pequeñas */
+      align-items: center;
+    }
+  }
+    .footer-video video {
+      width: 100%; /* El video ocupa todo el ancho disponible en pantallas pequeñas */
+      height: auto;
+    } footer {
+    background-color: rgba(0, 0, 0, 0.7); /* Fondo oscuro del footer */
+    color: white;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+  }
+
+  /* Contenedor para el texto y el video */
+  .footer-container {
+    display: flex;
+    justify-content: space-between; /* Coloca los elementos a los extremos */
+    align-items: center;
+    max-width: 1200px; /* Limita el ancho */
+    margin: 0 auto; /* Centra el contenido */
+  }
+
+  /* Estilo para el texto en el footer */
+  .footer-text {
+    flex: 1;
+    font-size: 16px;
+  }
+
+  /* Estilo para el video en el footer */
+  .footer-video video {
+    width: 320px; /* Establece el tamaño del video */
+    height: 240px;
+    object-fit: cover; /* Asegura que el video mantenga el aspecto sin deformarse */
+  }
+
+  /* Responsividad para pantallas más pequeñas */
+  @media (max-width: 768px) {
+    .footer-container {
+      flex-direction: column; /* Apila los elementos en columnas en pantallas pequeñas */
+      align-items: center;
+    }
+
+    .footer-video video {
+      width: 100%; /* El video ocupa todo el ancho disponible en pantallas pequeñas */
+      height: auto;
+    }
+}

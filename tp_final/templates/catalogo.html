@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+        <title>Catálogo de Zapatillas</title>
+    </head>
+    
+    <style>
+        body {
+            background: url("{{ url_for('static', filename='uploads/fondo.jpeg') }}") no-repeat center center fixed;
+            background-size: cover;
+        }
+        /* Estilo para el encabezado y barra de búsqueda */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: rgba(5, 5, 5, 0.5);
+            color: rgb(24, 24, 26);
+        }
+
+        .busqueda-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .busqueda-container input {
+            padding: 8px;
+            margin-right: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 2px solid #3498db; /* Aquí puedes cambiar el color */
+            width: 300px;
+        }
+
+        .carrito-icono {
+            position: relative;
+            font-size: 24px;
+        }
+
+        .carrito-icono img {
+            width: 32px;
+            height: 32px;
+            margin-right: 8px;
+        }
+
+        .contador {
+            background-color: red;
+            color: white;
+            border-radius: 50%;
+            padding: 4px 8px;
+            font-size: 14px;
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
+
+        .auth-links {
+            display: flex;
+            align-items: center;
+        }
+
+        .auth-links a {
+            margin-left: 20px;
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Encabezado con barra de búsqueda y carrito -->
+    <header>
+        <h1>Catálogo de Zapatillas</h1>
+        <div class="busqueda-container">
+            <form action="{{ url_for('catalogo') }}" method="GET">
+                <input type="text" name="busqueda" placeholder="Buscar productos..." value="{{ request.args.get('busqueda', '') }}">
+                <button type="submit">Buscar</button>
+            </form>
+
+        </div>
+         <!-- Verifica si el usuario está autenticado -->
+         <div class="auth-links">
+            {% if 'usuario_id' not in session %}
+                <a href="{{ url_for('registro') }}">Registrarse</a>
+                <a href="{{ url_for('login') }}">Iniciar sesión</a>
+            {% else %}
+                <a href="{{ url_for('logout') }}">Cerrar sesión</a>
+                <a href="{{ url_for('carrito') }}" class="carrito-icono">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
+                        <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
+                    </svg>
+                    {% if session['carrito'] %}
+                        <span class="contador">{{ session['carrito'] | length }}</span>
+                    {% endif %}
+                </a>
+            {% endif %}
+        </div>
+    
+    </header>
+
+    <!-- Mostrar productos -->
+    <div class="productos">
+        {% for producto in productos %}
+        <div class="producto">
+            <h2>{{ producto[1] }}</h2>
+            <p>Precio: ${{ producto[2] }}</p>
+            <img src="{{ url_for('static', filename=producto[3]) }}" alt="{{ producto[1] }}">
+            <a href="{{ url_for('agregar_al_carrito', producto_id=producto[0]) }}">Agregar al carrito</a>
+            {% if session.get('usuario_correo') == 'superusuario@gmail.com' %}
+                <a href="{{ url_for('editar_producto', producto_id=producto[0]) }}">Editar Producto</a>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <p>Datos de la página: Catálogo de Zapatillas</p>
+            <p>Ubicación: Ciudad de la Moda</p>
+            <div class="jesus-bailando">
+                <!-- Aquí puedes poner una imagen de "Jesús bailando a lo clásico Simpson" -->
+                <video width="320" height="240" autoplay loop muted>
+                    <source src="{{ url_for('static', filename='images/videojesus.mp4') }}" type="video/mp4">
+                    Tu navegador no soporta el formato de video.
+                  </video>
+            </div>
+        </div>
+    </footer>
+    
+</body>
+</html>

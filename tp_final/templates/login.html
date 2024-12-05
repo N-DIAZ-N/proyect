@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>Iniciar Sesión</title>
+</head>
+<body>
+    <div class="login-container">
+        <h1>Iniciar Sesión</h1>
+        <form action="{{ url_for('login') }}" method="post" class="login-form">
+            <label for="correo">Correo:</label>
+            <input type="email" id="correo" name="correo" required>
+
+            <label for="contraseña">Contraseña:</label>
+            <input type="password" id="contraseña" name="contraseña" required>
+
+            <button type="submit" class="login-button">Iniciar Sesión</button>
+        </form>
+        <a href="{{ url_for('registro') }}" class="register-link">¿No tienes cuenta? Regístrate aquí</a>
+    </div>
+</body>
+</html>

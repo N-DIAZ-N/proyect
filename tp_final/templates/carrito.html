@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito de Compras</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            color: #444;
+        }
+
+        table {
+            width: 100%;
+            max-width: 800px;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        table th, table td {
+            text-align: left;
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        table thead {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        table tr:last-child td {
+            border-bottom: none;
+        }
+
+        table td input[type="number"] {
+            width: 50px;
+            padding: 5px;
+            text-align: center;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        table td button {
+            padding: 5px 10px;
+            background-color: #ff4d4d;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        table td button:hover {
+            background-color: #e63939;
+        }
+
+        a {
+            text-decoration: none;
+            display: inline-block;
+            padding: 10px 15px;
+            margin: 10px 5px;
+            color: white;
+            background-color: #4CAF50;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        a:hover {
+            background-color: #45a049;
+        }
+
+        p {
+            font-size: 1.1em;
+        }
+
+        strong {
+            color: #444;
+        }
+    </style>
+</head>
+<body>
+    <h1>Carrito de Compras</h1>
+
+    {% if carrito and carrito|length > 0 %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Precio</th>
+                    <th>Cantidad</th>
+                    <th>Total</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in carrito %}
+                <tr>
+                    <td>{{ item['nombre'] }}</td>
+                    <td>${{ item['precio'] }}</td>
+                    <td>
+                        <form action="{{ url_for('actualizar_carrito', producto_id=item['id']) }}" method="post">
+                            <input type="number" name="cantidad" value="{{ item['cantidad'] }}" min="1">
+                            <button type="submit" style="background-color: #4CAF50;">Actualizar</button>
+                        </form>
+                    </td>
+                    <td>${{ item['precio'] * item['cantidad'] }}</td>
+                    <td>
+                        <form action="{{ url_for('eliminar_del_carrito', producto_id=item['id']) }}" method="post">
+                            <button type="submit">Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <p><strong>Total del carrito: ${{ total_carrito }}</strong></p>
+        <a href="{{ url_for('pago') }}">Ir a Pago</a>
+    {% else %}
+        <p>Tu carrito está vacío.</p>
+    {% endif %}
+
+    <a href="{{ url_for('catalogo') }}">Volver al catálogo</a>
+</head>
+
+</html>
+
